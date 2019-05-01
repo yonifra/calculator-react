@@ -8,8 +8,19 @@ class App extends Component {
         super();
 
         this.state = {
-            result: ""
+            result: "",
+            isLastCharSymbol: false
         }
+    }
+    
+    isSymbol = value => {
+        if (value === '-' ||
+        value === '+' ||
+        value === '*' ||
+        value === '/')
+            return true;
+
+        return false;
     }
 
     onClick = button => {
@@ -23,6 +34,9 @@ class App extends Component {
         }
         else if(button === "CE"){
             this.backspace()
+        }
+        else if(isSymbol(button) && this.state.isLastCharSymbol) {
+            throw new Error('invalid operation')
         }
 
         else {
@@ -52,7 +66,6 @@ class App extends Component {
             this.setState({
                 result: "error"
             })
-
         }
     };
 
