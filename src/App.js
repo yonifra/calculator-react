@@ -14,13 +14,10 @@ class App extends Component {
     }
     
     isSymbol = value => {
-        if (value === '-' ||
+        return (value === '-' ||
         value === '+' ||
         value === '*' ||
         value === '/')
-            return true;
-
-        return false;
     }
 
     onClick = button => {
